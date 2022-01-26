@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.UserDto;
+import com.example.demo.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -26,7 +28,7 @@ import java.sql.Connection;
 public class DemoService {
 
     private final SqlSessionFactory sqlSessionFactory;
-
+    private final UserMapper userMapper;
 
     public String idToName(String id){
 
@@ -61,6 +63,11 @@ public class DemoService {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public UserDto findUser(Long seq) {
+
+        return userMapper.findById(seq);
     }
 
 }

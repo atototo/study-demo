@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.UserDto;
 import com.example.demo.service.DemoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -87,5 +88,18 @@ public class DemoController {
         return mv;
     }
 
+    @GetMapping(value = "/findUser")
+    public ModelAndView findUser(ModelAndView mv, Long seq){
+
+        UserDto userDto = demoService.findUser(seq);
+
+        log.info("seq : {} , email : {}, passwd: {}, create_at {} ",
+                userDto.getSeq(), userDto.getEmail(), userDto.getPasswd(), userDto.getCreate_at());
+
+        mv.addObject("email", userDto.getEmail());
+        mv.addObject("passwd", userDto.getPasswd());
+        mv.setViewName("test4.html");
+        return mv;
+    }
 
 }

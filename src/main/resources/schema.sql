@@ -11,6 +11,9 @@ CREATE TABLE users
 );
 
 
+INSERT INTO users(email, passwd, login_count, last_login_at, create_at) VALUES ('liu.a@aa.com','1234',0,now(),now() );
+INSERT INTO users(email, passwd, login_count, last_login_at, create_at) VALUES ('liu.b@aa.com','12345',0,now(),now() );
+
 CREATE TABLE TEST
 (
     ID   INT PRIMARY KEY,
