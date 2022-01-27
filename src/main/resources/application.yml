@@ -13,10 +13,24 @@ spring:
     restart:
       enabled: true
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:userdb;
+    #    driver-class-name: org.h2.Driver
+    #    url: jdbc:h2:mem:userdb;
+    #    쿼리 출력을 위해 설정 변경
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:h2:mem:userdb;
     username: sa
 #    : 스프링부트 2.4부터는 spring.datasource.username=sa 를 꼭 추가해주어야 한다. 그렇지 않으면 오류 발생생
     password:
 mybatis:
   type-aliases-package: com.example.demo.dto
+
+
+logging:
+logging:
+  level:
+    org:
+    springframework: INFO
+
+
+
+

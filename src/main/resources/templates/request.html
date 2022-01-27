@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Request Test</title>
+</head>
+<body>
+    <h1>요청 테스트 페이지 입니다.</h1>
+
+<br>
+
+<form name="frm" action="/createUser" method="post">
+
+    <label for="email" class="sr-only">email</label>
+    <input type="text" id="email" name="email" class="form-control" placeholder="email" required autofocus>
+
+    <label for="passwd" class="sr-only">password</label>
+    <input type="password" id="passwd" name="passwd" class="form-control" placeholder="passwd" required>
+
+
+    <button name="btn" type="submit" id="btnId">버튼</button>
+</form>
+
+</body>
+</html>

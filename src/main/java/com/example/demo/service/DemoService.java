@@ -5,7 +5,6 @@ import com.example.demo.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -69,5 +68,6 @@ public class DemoService {
 
         return userMapper.findById(seq);
     }
+
 
 }

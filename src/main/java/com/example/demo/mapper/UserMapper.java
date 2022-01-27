@@ -1,6 +1,8 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dto.RegisterDto;
 import com.example.demo.dto.UserDto;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -27,4 +29,13 @@ public interface UserMapper {
     @Select("SELECT * FROM USERS where seq = #{seq}")
     UserDto findById(Long seq);
 
+
+    @Select("SELECT * FROM USERS where email = #{email}")
+    UserDto findByEmail(String email);
+
+    @Insert("INSERT INTO users(email, passwd, login_count, last_login_at, create_at) VALUES (#{email},#{passwd},0,now(),now())")
+    int registerUser(RegisterDto registerDto);
+
+    @Insert("INSERT INTO users(email, passwd, login_count, last_login_at, create_at) VALUES (#{email},#{passwd},0,now(),now())")
+    int createUser(String email, String passwd);
 }

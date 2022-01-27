@@ -5,14 +5,8 @@ import com.example.demo.service.DemoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Arrays;
-import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 
 /**
@@ -36,6 +30,21 @@ public class DemoController {
     private final DemoService demoService;
 
 
+    /**
+     * 사용자 등록 페이지 이동
+     * @param mv mv
+     * @return ModelAndView
+     */
+    @GetMapping(value = "/")
+    public ModelAndView requestPage(ModelAndView mv){
+        log.info("[ DemoController > requestPage 사용자 등록 페이지 이동 요청]");
+        mv.setViewName("request.html");
+        return mv;
+    }
+
+
+
+
     @GetMapping(value = "/findName")
     public ModelAndView findName(ModelAndView mv, String id){
         log.info("?????????????????????123");
@@ -46,15 +55,6 @@ public class DemoController {
 
         mv.addObject("id", id);
         mv.addObject("name", name);
-        mv.setViewName("test.html");
-        return mv;
-    }
-
-    @GetMapping(value = "/")
-    public ModelAndView find(ModelAndView mv){
-        log.info("?????????????????????123");
-         demoService.connectionTest();
-        mv.addObject("name", "name");
         mv.setViewName("test.html");
         return mv;
     }
@@ -101,5 +101,6 @@ public class DemoController {
         mv.setViewName("test4.html");
         return mv;
     }
+
 
 }
