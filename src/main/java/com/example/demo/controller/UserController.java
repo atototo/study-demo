@@ -5,6 +5,7 @@ import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,6 +60,23 @@ public class UserController {
         // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("result",userService.registerUser(registerDto));
         mv.setViewName("result.html");
+        return mv;
+    }
+
+
+    /**
+     * 사용자 리스트 요청
+     * @param mv mv
+     * @return ModelAndView
+     */
+    @GetMapping(value="findAll")
+    public ModelAndView findAll(ModelAndView mv) {
+        log.info("[ UserController > findAll 사용자 리스트 요청 시작]");
+
+        // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
+        mv.addObject("userList",userService.findAll());
+        mv.setViewName("resultTable.html");
+
         return mv;
     }
 }

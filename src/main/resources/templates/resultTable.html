@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 테이블 선언 실시 -->
+<table>
+
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>이메일</th>
+        <th>비밀번호</th>
+        <th>로그인 회수</th>
+        <th>최근 로그인 날짜</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- tr th:each : 행 반복문을 수행하겠다는 의미입니다 [여러 데이터 출력] -->
+    <tr th:each="list : ${userList}">
+        <td><span th:text="${list.seq}"></span></td>
+        <td><span th:text="${list.email}"></span></td>
+        <td><span th:text="${list.passwd}"></span></td>
+        <td><span th:text="${list.login_count}"></span></td>
+        <td><span th:text="${list.last_login_at}"></span></td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>

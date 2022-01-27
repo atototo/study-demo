@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.RegisterDto;
+import com.example.demo.dto.UserDto;
 import com.example.demo.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * packageName : com.example.demo.service
@@ -65,6 +68,14 @@ public class UserService {
         }
 
         return registerResult;
+    }
+
+    /**
+     * 사용자 전체 리스트 쵸청
+     * @return List<UserDto>
+     */
+    public List<UserDto> findAll() {
+        return userMapper.findAll();
     }
 
 }
