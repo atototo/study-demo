@@ -26,7 +26,6 @@ mybatis:
 
 
 logging:
-logging:
   level:
     org:
     springframework: INFO
