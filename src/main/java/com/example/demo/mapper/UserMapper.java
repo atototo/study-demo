@@ -5,6 +5,7 @@ import com.example.demo.dto.UserDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -33,9 +34,12 @@ public interface UserMapper {
     @Select("SELECT * FROM USERS where email = #{email}")
     UserDto findByEmail(String email);
 
-    @Insert("INSERT INTO users(email, passwd, login_count, last_login_at, create_at) VALUES (#{email},#{passwd},0,now(),now())")
+    @Insert("INSERT INTO users(email, passwd, nick_name, login_count, last_login_at, create_at, update_at) VALUES (#{email},#{passwd},#{nick_name},0,now(),now(),now())")
     int registerUser(RegisterDto registerDto);
 
-    @Insert("INSERT INTO users(email, passwd, login_count, last_login_at, create_at) VALUES (#{email},#{passwd},0,now(),now())")
-    int createUser(String email, String passwd);
+    @Insert("INSERT INTO users(email, passwd, nick_name, login_count,  last_login_at, create_at, update_at) VALUES (#{email},#{passwd}, #{nick_name}, 0,now(),now(),now())")
+    int createUser(String email, String nick_name, String passwd);
+
+    @Update("UPDATE users SET passwd=#{passwd}, nick_name=#{nick_name}, update_at=now() WHERE seq =#{seq}")
+    int updateUser(RegisterDto registerDto);
 }

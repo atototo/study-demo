@@ -18,8 +18,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RegisterDto {
-
+    private Long seq;
     private String email;
     private String passwd;
-
+    private String nick_name;
 }

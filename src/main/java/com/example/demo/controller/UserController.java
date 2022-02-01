@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.RegisterDto;
+import com.example.demo.service.DemoService;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final DemoService demoService;
 
 
     /**
@@ -37,11 +39,11 @@ public class UserController {
      * @return ModelAndView
      */
     @PostMapping(value = "/createUser")
-    public ModelAndView createUser(ModelAndView mv , String email, String passwd) {
+    public ModelAndView createUser(ModelAndView mv , String email, String nick_name, String passwd) {
         log.info("[ UserController > registerUser 사용자 등록 요청 시작]");
 
         // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
-        mv.addObject("result",userService.createUser(email, passwd));
+        mv.addObject("result",userService.createUser(email, nick_name, passwd));
         mv.setViewName("result.html");
         return mv;
     }
@@ -69,7 +71,7 @@ public class UserController {
      * @param mv mv
      * @return ModelAndView
      */
-    @GetMapping(value="findAll")
+    @GetMapping(value="/findAll")
     public ModelAndView findAll(ModelAndView mv) {
         log.info("[ UserController > findAll 사용자 리스트 요청 시작]");
 
@@ -77,6 +79,39 @@ public class UserController {
         mv.addObject("userList",userService.findAll());
         mv.setViewName("resultTable.html");
 
+        return mv;
+    }
+
+
+    /**
+     *  사용자 수정 페이지 요청
+     * @param mv mv
+     * @param seq seq
+     * @return ModelAndView
+     */
+    @GetMapping(value="/reqUpdateUserInfo")
+    public ModelAndView reqUpdateUserInfo(ModelAndView mv, Long seq) {
+        log.info("[ UserController > reqUpdateUserInfo 사용자 정보 수정 페이지 요청 시작]");
+
+        // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
+        mv.addObject("user", demoService.findUser(seq));
+        mv.setViewName("request.html");
+        return mv;
+    }
+
+    /**
+     *  사용자 정보 업데이트
+     * @param registerDto registerDto
+     * @param mv mv
+     * @return ModelAndView
+     */
+    @PostMapping(value = "/updateUser")
+    public ModelAndView updateUser(RegisterDto registerDto, ModelAndView mv) {
+        log.info("[ UserController > updateUser 사용자 수정 요청 시작]");
+
+        // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
+        mv.addObject("result",userService.updateUser(registerDto));
+        mv.setViewName("result.html");
         return mv;
     }
 }

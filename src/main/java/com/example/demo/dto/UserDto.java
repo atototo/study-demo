@@ -25,8 +25,10 @@ public class UserDto {
     private Long seq;
     private String email;
     private String passwd;
+    private String nick_name;
     private int login_count;
     private LocalDateTime last_login_at;
     private LocalDateTime create_at;
+    private LocalDateTime update_at;
 
 }
