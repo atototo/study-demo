@@ -2,10 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.RegisterDto;
 import com.example.demo.dto.UserDto;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -30,7 +27,6 @@ public interface UserMapper {
     @Select("SELECT * FROM USERS where seq = #{seq}")
     UserDto findById(Long seq);
 
-
     @Select("SELECT * FROM USERS where email = #{email}")
     UserDto findByEmail(String email);
 
@@ -42,4 +38,7 @@ public interface UserMapper {
 
     @Update("UPDATE users SET passwd=#{passwd}, nick_name=#{nick_name}, update_at=now() WHERE seq =#{seq}")
     int updateUser(RegisterDto registerDto);
+
+    @Delete("DELETE FROM users WHERE seq = #{seq}")
+    int deleteUser(Long seq);
 }

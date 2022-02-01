@@ -99,4 +99,27 @@ public class UserService {
         return registerResult;
     }
 
+    /**
+     * 회원 삭제 요청 처리
+     * @param seq seq
+     * @return String
+     */
+    public String deleteUser(Long seq) {
+        // 사용자 정보 insert
+        int result = userMapper. deleteUser(seq);
+        // 결과 문구 default 값 설정
+        String registerResult = "회원 삭제 실패";
+
+        // 성공일 경우 결과 문구 변경
+        if (result > 0) {
+            registerResult = "회원 삭제 성공";
+            log.info("[ UserService > deleteUser 사용자 삭제 요청 성공]");
+        }
+
+        return registerResult;
+    }
+
+
+
+
 }

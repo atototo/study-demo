@@ -82,7 +82,6 @@ public class UserController {
         return mv;
     }
 
-
     /**
      *  사용자 수정 페이지 요청
      * @param mv mv
@@ -109,8 +108,24 @@ public class UserController {
     public ModelAndView updateUser(RegisterDto registerDto, ModelAndView mv) {
         log.info("[ UserController > updateUser 사용자 수정 요청 시작]");
 
-        // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
+        // 사용자 수정 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("result",userService.updateUser(registerDto));
+        mv.setViewName("result.html");
+        return mv;
+    }
+
+    /**
+     * 사용자 삭제 요청
+     * @param mv mv
+     * @param seq seq
+     * @return ModelAndView
+     */
+    @PostMapping(value = "/deleteUser")
+    public ModelAndView deleteUser(ModelAndView mv, Long seq) {
+        log.info("[ UserController > deleteUser 사용자 삭제 요청 시작]");
+
+        // 사용자 삭제 business 로직 실행 후 결과 바로 받아 모델에 담는다.
+        mv.addObject("result",userService.deleteUser(seq));
         mv.setViewName("result.html");
         return mv;
     }

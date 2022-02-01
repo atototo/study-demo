@@ -9,13 +9,21 @@
 </head>
 <script>
     function reqUpdateUserInfo(seq) {
-        var reqUserForm = document.reqUpdateUser;
+        const reqUserForm = document.reqUpdateUser;
         reqUserForm.seq.value = seq;
         reqUserForm.submit();
+    }
+    function deleteUserInfo(seq) {
+        const reqDeleteUser = document.reqDeleteUser;
+        reqDeleteUser.seq.value = seq;
+        reqDeleteUser.submit();
     }
 </script>
 <body>
 <form name="reqUpdateUser" method="get" action="/reqUpdateUserInfo">
+    <input type="hidden" name="seq">
+</form>
+<form name="reqDeleteUser" method="post" action="/deleteUser">
     <input type="hidden" name="seq">
 </form>
 <!-- 테이블 선언 실시 -->
@@ -44,6 +52,7 @@
         <td><span th:text="${list.last_login_at}"></span></td>
         <td><span th:text="${list.update_at}"></span></td>
         <td><button th:onclick="|reqUpdateUserInfo(${list.seq})|">사용자 정보 수정</button> </td>
+        <td><button th:onclick="|deleteUserInfo(${list.seq})|">사용자 삭제</button> </td>
     </tr>
     </tbody>
 
