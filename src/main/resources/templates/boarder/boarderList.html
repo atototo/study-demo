@@ -27,9 +27,7 @@
             <th>이메일</th>
             <th>닉네임</th>
             <th>비밀번호</th>
-            <th>로그인 회수</th>
-            <th>최근 로그인 날짜</th>
-            <th>마지막 수정날짜</th>
+            <th>수정날짜</th>
         </tr>
         </thead>
         <tbody>
@@ -39,11 +37,9 @@
             <td><span th:text="${list.email}"></span></td>
             <td><span th:text="${list.nick_name}"></span></td>
             <td><span th:text="${list.passwd}"></span></td>
-            <td><span th:text="${list.login_count}"></span></td>
-            <td><span th:text="${list.last_login_at}"></span></td>
-            <td><span th:text="${list.update_at}"></span></td>
-            <td><button th:onclick="|reqUpdateUserInfo(${list.seq})|">사용자 정보 수정</button> </td>
-            <td><button th:onclick="|deleteUserInfo(${list.seq})|">사용자 삭제</button> </td>
+            <td><span th:text="${#temporals.format(list.update_at, 'yyyy-MM-dd')}"></span></td>
+            <td><button class="btn btn-primary" th:onclick="|reqUpdateUserInfo(${list.seq})|">수정</button> </td>
+            <td><button  class="btn btn-primary" th:onclick="|deleteUserInfo(${list.seq})|">삭제</button> </td>
         </tr>
         </tbody>
     </table>
