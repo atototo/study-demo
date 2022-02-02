@@ -77,7 +77,7 @@ public class UserController {
 
         // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",userService.findAll());
-        mv.setViewName("resultTable.html");
+        mv.setViewName("/boarder/boarderList.html");
 
         return mv;
     }

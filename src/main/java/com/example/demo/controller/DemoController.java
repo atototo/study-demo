@@ -35,12 +35,25 @@ public class DemoController {
      * @param mv mv
      * @return ModelAndView
      */
-    @GetMapping(value = "/")
+    @GetMapping(value = "/request")
     public ModelAndView requestPage(ModelAndView mv){
+        log.info("[ DemoController > requestPage 사용자 등록 페이지 이동 요청]");
+        mv.setViewName("request.html");
+        return mv;
+    }
+
+    /**
+     * index 페이지 이동
+     * @param mv mv
+     * @return ModelAndView
+     */
+    @GetMapping(value = "/")
+    public ModelAndView indexPage(ModelAndView mv){
         log.info("[ DemoController > requestPage 사용자 등록 페이지 이동 요청]");
         mv.setViewName("index.html");
         return mv;
     }
+
 
 
 
