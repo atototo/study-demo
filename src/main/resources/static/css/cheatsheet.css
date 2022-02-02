@@ -96,7 +96,7 @@ body {
 }
 
 /* Layout */
-@media (min-width: 1200px) {
+@media (min-width: 3000px) {
   body {
     display: grid;
     gap: 1rem;

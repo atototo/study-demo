@@ -2,6 +2,7 @@ package com.example.demo.boarder.mapper;
 
 import com.example.demo.dto.RegisterDto;
 import com.example.demo.dto.UserDto;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -27,4 +28,7 @@ public interface BoarderMapper {
 
     @Insert("INSERT INTO users(email, passwd, nick_name, login_count, last_login_at, create_at, update_at) VALUES (#{email},#{passwd},#{nick_name},0,now(),now(),now())")
     int boarderRegister(RegisterDto registerDto);
+
+    @Delete("DELETE FROM users WHERE seq = #{seq}")
+    int deleteBoarder(Long seq);
 }

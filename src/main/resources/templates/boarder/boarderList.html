@@ -6,46 +6,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!-- Bootstrap core CSS -->
+    <!— Bootstrap core CSS —>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!— Custom styles for this template —>
     <link href="/css/cheatsheet.css" rel="stylesheet">
 </head>
 
 <script>
     function goBoarderRegister(){
-        window.location.href = 'http://localhost:8080/boarder/reqBoarderRegister';
+        window.location.href = 'http://localhost:8080/boarder/register/page';
     }
+
+    function deleteBorderInfo(seq) {
+        const reqDeleteBoarder = document.reqDeleteBoarder;
+        reqDeleteBoarder.seq.value = seq;
+        reqDeleteBoarder.submit();
+    }
+
 </script>
 <body>
-<div class="bd-example">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>번호</th>
-            <th>이메일</th>
-            <th>닉네임</th>
-            <th>비밀번호</th>
-            <th>수정날짜</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- tr th:each : 행 반복문을 수행하겠다는 의미입니다 [여러 데이터 출력] -->
-        <tr th:each="list : ${userList}">
-            <td><span th:text="${list.seq}"></span></td>
-            <td><span th:text="${list.email}"></span></td>
-            <td><span th:text="${list.nick_name}"></span></td>
-            <td><span th:text="${list.passwd}"></span></td>
-            <td><span th:text="${#temporals.format(list.update_at, 'yyyy-MM-dd')}"></span></td>
-            <td><button class="btn btn-primary" th:onclick="|reqUpdateUserInfo(${list.seq})|">수정</button> </td>
-            <td><button  class="btn btn-primary" th:onclick="|deleteUserInfo(${list.seq})|">삭제</button> </td>
-        </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-primary" onclick="goBoarderRegister();">글쓰기</button>
+<form name="reqDeleteBoarder" method="post" action="/boarder/delete">
+    <input type="hidden" name="seq">
+</form>
+<div class="bd-cheatsheet container-fluid bg-body">
+    <section id="content">
+        <article class="my-3" id="tables">
+            <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+            </div>
+            <div>
+                <div class="bd-example" >
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>이메일</th>
+                            <th>닉네임</th>
+                            <th>비밀번호</th>
+                            <th>수정날짜</th>
+                            <th>수정</th>
+                            <th>삭제</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="list : ${userList}">
+                            <td><span th:text="${list.seq}"></span></td>
+                            <td><span th:text="${list.email}"></span></td>
+                            <td><span th:text="${list.nick_name}"></span></td>
+                            <td><span th:text="${list.passwd}"></span></td>
+                            <td><span th:text="${#temporals.format(list.update_at, 'yyyy-MM-dd')}"></span></td>
+                            <td><button class="btn btn-primary" th:onclick="|reqUpdateUserInfo(${list.seq})|">수정</button> </td>
+                            <td><button  class="btn btn-primary" th:onclick="|deleteBorderInfo(${list.seq})|">삭제</button> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary" onclick="goBoarderRegister();">글쓰기</button>
+                </div>
+            </div>
+        </article>
+    </section>
 </div>
-
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/js/cheatsheet.js"></script>

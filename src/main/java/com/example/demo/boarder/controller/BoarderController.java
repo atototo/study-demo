@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BoarderController {
     private final BoarderService boarderService;
 
-    @GetMapping(value = "/boarderList")
+    @GetMapping(value = "/list")
     public ModelAndView boarderListPage(ModelAndView mv){
         log.info("[ boarderController > boarderListPage 게시판 페이지 이동 요청]");
         mv.addObject("userList",boarderService.findAll());
@@ -40,14 +40,7 @@ public class BoarderController {
     }
 
 
-    @GetMapping(value = "/boarderList2")
-    public ModelAndView boarderListPage2(ModelAndView mv){
-        log.info("[ boarderController > boarderListPage 게시판 페이지 이동 요청]");
-        mv.setViewName("/boarder/boarderList2.html");
-        return mv;
-    }
-
-    @GetMapping(value = "/reqBoarderRegister")
+    @GetMapping(value = "/register/page")
     public ModelAndView boarderRegisterPage(ModelAndView mv){
         log.info("[ boarderController > boarderRegisterPage 게시판 등록 페이지 이동 요청]");
         mv.setViewName("/boarder/boarderRegister.html");
@@ -61,12 +54,29 @@ public class BoarderController {
      * @param mv mv
      * @return ModelAndView
      */
-    @PostMapping(value = "/boarderRegister")
+    @PostMapping(value = "/register/save")
     public ModelAndView boarderRegister(RegisterDto registerDto, ModelAndView mv) {
         log.info("[ UserController > registerUser 사용자 등록 요청 시작]");
 
         // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",boarderService.boarderRegister(registerDto));
+        mv.setViewName("/boarder/boarderList.html");
+        return mv;
+    }
+
+
+    /**
+     * 사용자 삭제 요청
+     * @param mv mv
+     * @param seq seq
+     * @return ModelAndView
+     */
+    @PostMapping(value = "/delete")
+    public ModelAndView deleteBoarder(ModelAndView mv, Long seq) {
+        log.info("[ UserController > deleteUser 사용자 삭제 요청 시작]");
+
+        // 사용자 삭제 business 로직 실행 후 결과 바로 받아 모델에 담는다.
+        mv.addObject("userList",boarderService.deleteBoarder(seq));
         mv.setViewName("/boarder/boarderList.html");
         return mv;
     }

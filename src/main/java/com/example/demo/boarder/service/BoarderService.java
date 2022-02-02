@@ -54,4 +54,24 @@ public class BoarderService {
     public List<UserDto> findAll() {
         return boarderMapper.findAll();
     }
+
+    /**
+     * 회원 삭제 요청 처리
+     * @param seq seq
+     * @return String
+     */
+    public List<UserDto> deleteBoarder(Long seq) {
+        // 사용자 정보 insert
+        int result = boarderMapper. deleteBoarder(seq);
+        // 결과 문구 default 값 설정
+        String registerResult = "회원 삭제 실패";
+
+        // 성공일 경우 결과 문구 변경
+        if (result > 0) {
+            registerResult = "회원 삭제 성공";
+            log.info("[ UserService > deleteUser 사용자 삭제 요청 성공]");
+        }
+
+        return boarderMapper.findAll();
+    }
 }
