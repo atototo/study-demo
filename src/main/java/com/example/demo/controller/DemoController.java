@@ -38,7 +38,7 @@ public class DemoController {
     @GetMapping(value = "/")
     public ModelAndView requestPage(ModelAndView mv){
         log.info("[ DemoController > requestPage 사용자 등록 페이지 이동 요청]");
-        mv.setViewName("request.html");
+        mv.setViewName("index.html");
         return mv;
     }
 
