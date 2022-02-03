@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BoarderController {
     private final BoarderService boarderService;
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/list") 
     public ModelAndView boarderListPage(ModelAndView mv){
         log.info("[ boarderController > boarderListPage 게시판 페이지 이동 요청]");
         mv.addObject("userList",boarderService.findAll());
