@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.ex1.service;
 
-import com.example.demo.dto.UserDto;
-import com.example.demo.mapper.UserMapper;
+import com.example.demo.boarder.dto.UserDto;
+import com.example.demo.ex1.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;

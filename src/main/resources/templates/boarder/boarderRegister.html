@@ -12,6 +12,8 @@
 <script>
     function registerBoardInfo() {
         const reqUserForm = document.frmBoard;
+        reqUserForm.setAttribute("method","post")
+        reqUserForm.setAttribute("action","/boarder/register/save")
         reqUserForm.submit();
     }
 
@@ -19,7 +21,7 @@
 <body>
 <div>
     <div class="bd-example">
-        <form class="row g-3" name="frmBoard" action="/boarder/register/save" method="post">
+        <form class="row g-3" name="frmBoard">
             <div class="col-md-4">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

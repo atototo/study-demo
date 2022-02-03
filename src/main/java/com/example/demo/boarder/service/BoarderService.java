@@ -1,8 +1,8 @@
 package com.example.demo.boarder.service;
 
 import com.example.demo.boarder.mapper.BoarderMapper;
-import com.example.demo.dto.RegisterDto;
-import com.example.demo.dto.UserDto;
+import com.example.demo.boarder.dto.RegisterDto;
+import com.example.demo.boarder.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

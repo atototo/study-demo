@@ -1,7 +1,7 @@
 package com.example.demo.boarder.mapper;
 
-import com.example.demo.dto.RegisterDto;
-import com.example.demo.dto.UserDto;
+import com.example.demo.boarder.dto.RegisterDto;
+import com.example.demo.boarder.dto.UserDto;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

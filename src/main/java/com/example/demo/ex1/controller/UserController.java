@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.ex1.controller;
 
-import com.example.demo.dto.RegisterDto;
-import com.example.demo.service.DemoService;
-import com.example.demo.service.UserService;
+import com.example.demo.boarder.dto.RegisterDto;
+import com.example.demo.ex1.service.DemoService;
+import com.example.demo.ex1.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

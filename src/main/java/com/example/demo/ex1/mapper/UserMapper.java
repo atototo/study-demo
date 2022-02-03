@@ -1,7 +1,7 @@
-package com.example.demo.mapper;
+package com.example.demo.ex1.mapper;
 
-import com.example.demo.dto.RegisterDto;
-import com.example.demo.dto.UserDto;
+import com.example.demo.boarder.dto.RegisterDto;
+import com.example.demo.boarder.dto.UserDto;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

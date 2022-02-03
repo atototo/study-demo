@@ -21,6 +21,8 @@ spring:
     username: sa
 #    : 스프링부트 2.4부터는 spring.datasource.username=sa 를 꼭 추가해주어야 한다. 그렇지 않으면 오류 발생생
     password:
+  thymeleaf:
+    suffix: .html
 mybatis:
   type-aliases-package: com.example.demo.dto
 

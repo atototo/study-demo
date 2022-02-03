@@ -1,13 +1,11 @@
-package com.example.demo.dto;
+package com.example.demo.boarder.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 /**
  * packageName : com.example.demo.dto
- * fileName : UserDto
+ * fileName : RegisterDto
  * author : isbn8
  * date : 2022-01-27
  * description :
@@ -19,15 +17,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class UserDto {
-
+public class RegisterDto {
     private Long seq;
     private String email;
     private String passwd;
     private String nick_name;
-    private int login_count;
-    private LocalDateTime last_login_at;
-    private LocalDateTime create_at;
-    private LocalDateTime update_at;
-
 }

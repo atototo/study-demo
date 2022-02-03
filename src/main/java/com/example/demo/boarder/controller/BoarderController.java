@@ -1,14 +1,12 @@
 package com.example.demo.boarder.controller;
 
 import com.example.demo.boarder.service.BoarderService;
-import com.example.demo.dto.RegisterDto;
-import com.example.demo.service.UserService;
+import com.example.demo.boarder.dto.RegisterDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,11 +29,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class BoarderController {
     private final BoarderService boarderService;
 
-    @GetMapping(value = "/list") 
+    @GetMapping(value = "/list")
     public ModelAndView boarderListPage(ModelAndView mv){
         log.info("[ boarderController > boarderListPage 게시판 페이지 이동 요청]");
         mv.addObject("userList",boarderService.findAll());
-        mv.setViewName("/boarder/boarderList.html");
+        mv.setViewName("/boarder/boarderList");
         return mv;
     }
 
@@ -43,7 +41,7 @@ public class BoarderController {
     @GetMapping(value = "/register/page")
     public ModelAndView boarderRegisterPage(ModelAndView mv){
         log.info("[ boarderController > boarderRegisterPage 게시판 등록 페이지 이동 요청]");
-        mv.setViewName("/boarder/boarderRegister.html");
+        mv.setViewName("/boarder/boarderRegister");
         return mv;
     }
 
@@ -60,7 +58,7 @@ public class BoarderController {
 
         // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",boarderService.boarderRegister(registerDto));
-        mv.setViewName("/boarder/boarderList.html");
+        mv.setViewName("redirect:/boarder/list");
         return mv;
     }
 
@@ -77,7 +75,7 @@ public class BoarderController {
 
         // 사용자 삭제 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",boarderService.deleteBoarder(seq));
-        mv.setViewName("/boarder/boarderList.html");
+        mv.setViewName("redirect:/boarder/list");
         return mv;
     }
 }

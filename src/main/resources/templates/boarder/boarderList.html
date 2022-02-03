@@ -15,18 +15,20 @@
 
 <script>
     function goBoarderRegister(){
-        window.location.href = 'http://localhost:8080/boarder/register/page';
+        location.href = 'http://localhost:8080/boarder/register/page';
     }
 
     function deleteBorderInfo(seq) {
         const reqDeleteBoarder = document.reqDeleteBoarder;
         reqDeleteBoarder.seq.value = seq;
+        reqDeleteBoarder.setAttribute("method","post")
+        reqDeleteBoarder.setAttribute("action","/boarder/delete")
         reqDeleteBoarder.submit();
     }
 
 </script>
 <body>
-<form name="reqDeleteBoarder" method="post" action="/boarder/delete">
+<form name="reqDeleteBoarder">
     <input type="hidden" name="seq">
 </form>
 <div class="bd-cheatsheet container-fluid bg-body">
