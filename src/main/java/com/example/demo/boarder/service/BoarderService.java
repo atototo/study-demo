@@ -48,12 +48,42 @@ public class BoarderService {
     }
 
     /**
-     * 사용자 전체 리스트 쵸청
+     * 회원정보 수정, 결과 문구 리턴 ( json 으로 받는 경우)
+     * @param registerDto registerDto
+     * @return String
+     */
+    public List<UserDto> boarderUpdate(RegisterDto registerDto) {
+        // 사용자 정보 insert
+        int result = boarderMapper.boarderUpdate(registerDto);
+        // 결과 문구 default 값 설정
+        String updateResult = "회원 등록 실패";
+
+        // 성공일 경우 결과 문구 변경
+        if (result > 0) {
+            updateResult = "회원 등록 성공";
+            log.info("[ UserService > registerUser 사용자 수정 요청 성공]");
+        }
+
+        return boarderMapper.findAll();
+    }
+
+
+    /**
+     * 사용자 전체 리스트 요청
      * @return List<UserDto>
      */
     public List<UserDto> findAll() {
         return boarderMapper.findAll();
     }
+
+    /**
+     * seq에 해당하는 사용자 조회
+     * @return UserDto
+     */
+    public UserDto findBySeq(Long seq) {
+        return boarderMapper.findBySeq(seq);
+    }
+
 
     /**
      * 회원 삭제 요청 처리

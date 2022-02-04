@@ -15,7 +15,11 @@
 
 <script>
     function goBoarderRegister(){
-        location.href = 'http://localhost:8080/boarder/register/page';
+        location.href = '/boarder/register/page';
+    }
+
+    function goBoarderUpdate(seq){
+        location.href = '/boarder/update/page?seq='+seq;
     }
 
     function deleteBorderInfo(seq) {
@@ -57,7 +61,7 @@
                             <td><span th:text="${list.nick_name}"></span></td>
                             <td><span th:text="${list.passwd}"></span></td>
                             <td><span th:text="${#temporals.format(list.update_at, 'yyyy-MM-dd')}"></span></td>
-                            <td><button class="btn btn-primary" th:onclick="|reqUpdateUserInfo(${list.seq})|">수정</button> </td>
+                            <td><button class="btn btn-primary" th:onclick="|goBoarderUpdate(${list.seq})|">수정</button> </td>
                             <td><button  class="btn btn-primary" th:onclick="|deleteBorderInfo(${list.seq})|">삭제</button> </td>
                         </tr>
                         </tbody>

@@ -33,7 +33,7 @@ public class BoarderController {
     public ModelAndView boarderListPage(ModelAndView mv){
         log.info("[ boarderController > boarderListPage 게시판 페이지 이동 요청]");
         mv.addObject("userList",boarderService.findAll());
-        mv.setViewName("/boarder/boarderList");
+        mv.setViewName("/boarder/list");
         return mv;
     }
 
@@ -41,7 +41,15 @@ public class BoarderController {
     @GetMapping(value = "/register/page")
     public ModelAndView boarderRegisterPage(ModelAndView mv){
         log.info("[ boarderController > boarderRegisterPage 게시판 등록 페이지 이동 요청]");
-        mv.setViewName("/boarder/boarderRegister");
+        mv.setViewName("/boarder/registerForm");
+        return mv;
+    }
+
+    @GetMapping(value = "/update/page")
+    public ModelAndView boarderUpdatePage(ModelAndView mv, Long seq){
+        log.info("[ boarderController > boarderUpdatePage 게시판 수정 페이지 이동 요청], parameter [seq:{}]", seq);
+        mv.addObject("user", boarderService.findBySeq(seq));
+        mv.setViewName("/boarder/updateForm");
         return mv;
     }
 
@@ -58,6 +66,23 @@ public class BoarderController {
 
         // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",boarderService.boarderRegister(registerDto));
+        mv.setViewName("redirect:/boarder/list");
+        return mv;
+    }
+
+    /**
+     * 회원정보 수정  ( DTO 로 요청 받는 경우 )
+     * 현재는 postman 과같은 툴을 이용해서만 테스트 가능
+     * @param registerDto registerDto
+     * @param mv mv
+     * @return ModelAndView
+     */
+    @PostMapping(value = "/update/save")
+    public ModelAndView boarderUpdate(RegisterDto registerDto, ModelAndView mv) {
+        log.info("[ UserController > registerUser 사용자 수정 요청 시작]");
+
+        // 사용자 수정 business 로직 실행 후 결과 바로 받아 모델에 담는다.
+        mv.addObject("userList",boarderService.boarderUpdate(registerDto));
         mv.setViewName("redirect:/boarder/list");
         return mv;
     }

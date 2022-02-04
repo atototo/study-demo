@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/cheatsheet.css" rel="stylesheet">
+</head>
+<script>
+    function updateBoardInfo() {
+        const reqUserForm = document.frmBoard;
+        reqUserForm.setAttribute("method","post")
+        reqUserForm.setAttribute("action","/boarder/update/save")
+        reqUserForm.submit();
+    }
+
+</script>
+<body>
+<div>
+    <div class="bd-example">
+        <form class="row g-3" name="frmBoard">
+            <input type="hidden" name="seq" th:value="${user.seq}">
+            <div class="col-md-4">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" th:value="${user.email}" aria-describedby="emailHelp">
+            </div>
+            <div class="col-md-4">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="passwd" th:value="${user.passwd}"  class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="col-md-4">
+                <label for="exampleInputNickname" class="form-label">Nickname</label>
+                <input type="text" name="nick_name" th:value="${user.nick_name}"  class="form-control" id="exampleInputNickname" aria-describedby="emailHelp">
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="button" th:onclick="updateBoardInfo()">수정</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/cheatsheet.js"></script>
+</body>
+</html>
