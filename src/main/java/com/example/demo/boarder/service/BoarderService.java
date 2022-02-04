@@ -56,11 +56,11 @@ public class BoarderService {
         // 사용자 정보 insert
         int result = boarderMapper.boarderUpdate(registerDto);
         // 결과 문구 default 값 설정
-        String updateResult = "회원 등록 실패";
+        String updateResult = "회원 수정 실패";
 
         // 성공일 경우 결과 문구 변경
         if (result > 0) {
-            updateResult = "회원 등록 성공";
+            updateResult = "회원 수정 성공";
             log.info("[ UserService > registerUser 사용자 수정 요청 성공]");
         }
 
