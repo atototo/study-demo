@@ -31,7 +31,6 @@ public class BoarderController {
 
     @GetMapping(value = "/list")
     public ModelAndView boarderListPage(ModelAndView mv){
-        log.info("[ boarderController > boarderListPage 게시판 페이지 이동 요청]");
         mv.addObject("userList",boarderService.findAll());
         mv.setViewName("/boarder/list");
         return mv;
@@ -40,14 +39,12 @@ public class BoarderController {
 
     @GetMapping(value = "/register/page")
     public ModelAndView boarderRegisterPage(ModelAndView mv){
-        log.info("[ boarderController > boarderRegisterPage 게시판 등록 페이지 이동 요청]");
         mv.setViewName("/boarder/registerForm");
         return mv;
     }
 
     @GetMapping(value = "/update/page")
     public ModelAndView boarderUpdatePage(ModelAndView mv, Long seq){
-        log.info("[ boarderController > boarderUpdatePage 게시판 수정 페이지 이동 요청], parameter [seq:{}]", seq);
         mv.addObject("user", boarderService.findBySeq(seq));
         mv.setViewName("/boarder/updateForm");
         return mv;
@@ -62,7 +59,6 @@ public class BoarderController {
      */
     @PostMapping(value = "/register/save")
     public ModelAndView boarderRegister(RegisterDto registerDto, ModelAndView mv) {
-        log.info("[ UserController > registerUser 사용자 등록 요청 시작]");
 
         // 사용자 등록 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",boarderService.boarderRegister(registerDto));
@@ -79,7 +75,6 @@ public class BoarderController {
      */
     @PostMapping(value = "/update/save")
     public ModelAndView boarderUpdate(RegisterDto registerDto, ModelAndView mv) {
-        log.info("[ UserController > registerUser 사용자 수정 요청 시작]");
 
         // 사용자 수정 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",boarderService.boarderUpdate(registerDto));
@@ -96,7 +91,6 @@ public class BoarderController {
      */
     @PostMapping(value = "/delete")
     public ModelAndView deleteBoarder(ModelAndView mv, Long seq) {
-        log.info("[ UserController > deleteUser 사용자 삭제 요청 시작]");
 
         // 사용자 삭제 business 로직 실행 후 결과 바로 받아 모델에 담는다.
         mv.addObject("userList",boarderService.deleteBoarder(seq));
