@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -95,12 +96,9 @@ public class BoarderController {
      * @return ModelAndView
      */
     @PostMapping(value = "/delete")
-    public ModelAndView deleteBoarder(ModelAndView mv, Long seq) {
+    @ResponseBody
+    public String deleteBoarder(ModelAndView mv, Long seq) {
         log.info("[ UserController > deleteUser 사용자 삭제 요청 시작]");
-
-        // 사용자 삭제 business 로직 실행 후 결과 바로 받아 모델에 담는다.
-        mv.addObject("userList",boarderService.deleteBoarder(seq));
-        mv.setViewName("redirect:/boarder/list");
-        return mv;
+        return boarderService.deleteBoarder(seq);
     }
 }

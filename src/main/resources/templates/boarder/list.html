@@ -11,24 +11,30 @@
 
     <!— Custom styles for this template —>
     <link href="/css/cheatsheet.css" rel="stylesheet">
+
+    <!— jquery webjars add —>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <script>
-    function goBoarderRegister(){
-        location.href = '/boarder/register/page';
-    }
+    $(document).ready(function () {
+        $(".goBoarderRegister").on("click", function () {
+            $(location).attr("href", "/boarder/register/page");
+        });
 
-    function goBoarderUpdate(seq){
-        location.href = '/boarder/update/page?seq='+seq;
-    }
+        $(".goBoarderUpdate").on("click", function () {
+            $(location).attr("href", "/boarder/update/page?seq="+$(this).data("value"));
+        });
 
-    function deleteBorderInfo(seq) {
-        const reqDeleteBoarder = document.reqDeleteBoarder;
-        reqDeleteBoarder.seq.value = seq;
-        reqDeleteBoarder.setAttribute("method","post")
-        reqDeleteBoarder.setAttribute("action","/boarder/delete")
-        reqDeleteBoarder.submit();
-    }
+        $(".deleteBorderInfo").on("click", function () {
+
+            // 아래는 비동기 처리
+            $.post("/boarder/delete", {seq: $(this).data("value")}, function (data) {
+                alert(data);
+                location.reload();
+            });
+        });
+    });
 
 </script>
 <body>
@@ -42,7 +48,7 @@
             </div>
             <div>
                 <div class="bd-example" >
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="gridArea">
                         <thead>
                         <tr>
                             <th>번호</th>
@@ -61,12 +67,12 @@
                             <td><span th:text="${list.nick_name}"></span></td>
                             <td><span th:text="${list.passwd}"></span></td>
                             <td><span th:text="${#temporals.format(list.update_at, 'yyyy-MM-dd')}"></span></td>
-                            <td><button class="btn btn-primary" th:onclick="|goBoarderUpdate(${list.seq})|">수정</button> </td>
-                            <td><button  class="btn btn-primary" th:onclick="|deleteBorderInfo(${list.seq})|">삭제</button> </td>
+                            <td><button class="btn btn-primary goBoarderUpdate" th:data-value="${list.seq}">수정</button> </td>
+                            <td><button  class="btn btn-primary deleteBorderInfo" th:data-value="${list.seq}">삭제</button> </td>
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary" onclick="goBoarderRegister();">글쓰기</button>
+                    <button type="button" class="btn btn-primary goBoarderRegister">글쓰기</button>
                 </div>
             </div>
         </article>

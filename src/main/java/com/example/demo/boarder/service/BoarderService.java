@@ -90,7 +90,7 @@ public class BoarderService {
      * @param seq seq
      * @return String
      */
-    public List<UserDto> deleteBoarder(Long seq) {
+    public String deleteBoarder(Long seq) {
         // 사용자 정보 insert
         int result = boarderMapper. deleteBoarder(seq);
         // 결과 문구 default 값 설정
@@ -102,6 +102,6 @@ public class BoarderService {
             log.info("[ UserService > deleteUser 사용자 삭제 요청 성공]");
         }
 
-        return boarderMapper.findAll();
+        return registerResult;
     }
 }
