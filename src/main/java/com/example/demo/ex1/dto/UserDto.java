@@ -1,5 +1,7 @@
-package com.example.demo.boarder.dto;
+package com.example.demo.ex1.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.Setter;
 

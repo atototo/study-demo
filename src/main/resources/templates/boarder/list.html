@@ -19,15 +19,14 @@
 <script>
     $(document).ready(function () {
         $(".goBoarderRegister").on("click", function () {
-            $(location).attr("href", "/boarder/register/page");
+            $(location).attr("href", "/boarder/register");
         });
 
         $(".goBoarderUpdate").on("click", function () {
-            $(location).attr("href", "/boarder/update/page?seq="+$(this).data("value"));
+            $(location).attr("href", "/boarder/update?seq="+$(this).data("value"));
         });
 
         $(".deleteBorderInfo").on("click", function () {
-
             // 아래는 비동기 처리
             $.post("/boarder/delete", {seq: $(this).data("value")}, function (data) {
                 alert(data);
@@ -64,9 +63,9 @@
                         <tr th:each="list : ${userList}">
                             <td><span th:text="${list.seq}"></span></td>
                             <td><span th:text="${list.email}"></span></td>
-                            <td><span th:text="${list.nick_name}"></span></td>
+                            <td><span th:text="${list.nickName}"></span></td>
                             <td><span th:text="${list.passwd}"></span></td>
-                            <td><span th:text="${#temporals.format(list.update_at, 'yyyy-MM-dd')}"></span></td>
+                            <td><span th:text="${#temporals.format(list.updateAt, 'yyyy-MM-dd')}"></span></td>
                             <td><button class="btn btn-primary goBoarderUpdate" th:data-value="${list.seq}">수정</button> </td>
                             <td><button  class="btn btn-primary deleteBorderInfo" th:data-value="${list.seq}">삭제</button> </td>
                         </tr>

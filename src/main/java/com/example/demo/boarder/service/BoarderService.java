@@ -2,7 +2,6 @@ package com.example.demo.boarder.service;
 
 import com.example.demo.boarder.mapper.BoarderMapper;
 import com.example.demo.boarder.dto.RegisterDto;
-import com.example.demo.boarder.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,19 +31,17 @@ public class BoarderService {
      * @param registerDto registerDto
      * @return String
      */
-    public List<UserDto> boarderRegister(RegisterDto registerDto) {
-        // 사용자 정보 insert
-        int result = boarderMapper.boarderRegister(registerDto);
+    public String boarderRegister(RegisterDto registerDto) {
         // 결과 문구 default 값 설정
         String registerResult = "회원 등록 실패";
 
         // 성공일 경우 결과 문구 변경
-        if (result > 0) {
+        if (boarderMapper.boarderRegister(registerDto) > 0) {
             registerResult = "회원 등록 성공";
-            log.info("[ UserService > registerUser 사용자 등록 요청 성공]");
         }
 
-        return boarderMapper.findAll();
+        log.info("[ UserService > registerUser Result: {}]", registerResult);
+        return registerResult;
     }
 
     /**
@@ -52,35 +49,33 @@ public class BoarderService {
      * @param registerDto registerDto
      * @return String
      */
-    public List<UserDto> boarderUpdate(RegisterDto registerDto) {
-        // 사용자 정보 insert
-        int result = boarderMapper.boarderUpdate(registerDto);
+    public String boarderUpdate(RegisterDto registerDto) {
         // 결과 문구 default 값 설정
         String updateResult = "회원 수정 실패";
 
         // 성공일 경우 결과 문구 변경
-        if (result > 0) {
+        if (boarderMapper.boarderUpdate(registerDto) > 0) {
             updateResult = "회원 수정 성공";
-            log.info("[ UserService > registerUser 사용자 수정 요청 성공]");
         }
 
-        return boarderMapper.findAll();
+        log.info("[ UserService > registerUser Result: {}]", updateResult);
+        return updateResult;
     }
 
 
     /**
      * 사용자 전체 리스트 요청
-     * @return List<UserDto>
+     * @return List<RegisterDto>
      */
-    public List<UserDto> findAll() {
+    public List<RegisterDto> findAll() {
         return boarderMapper.findAll();
     }
 
     /**
      * seq에 해당하는 사용자 조회
-     * @return UserDto
+     * @return RegisterDto
      */
-    public UserDto findBySeq(Long seq) {
+    public RegisterDto findBySeq(Long seq) {
         return boarderMapper.findBySeq(seq);
     }
 
@@ -91,17 +86,14 @@ public class BoarderService {
      * @return String
      */
     public String deleteBoarder(Long seq) {
-        // 사용자 정보 insert
-        int result = boarderMapper. deleteBoarder(seq);
         // 결과 문구 default 값 설정
         String registerResult = "회원 삭제 실패";
-
         // 성공일 경우 결과 문구 변경
-        if (result > 0) {
+        if ( boarderMapper. deleteBoarder(seq) > 0) {
             registerResult = "회원 삭제 성공";
-            log.info("[ UserService > deleteUser 사용자 삭제 요청 성공]");
         }
 
+        log.info("[ UserService > deleteUser Result: {}]", registerResult);
         return registerResult;
     }
 }

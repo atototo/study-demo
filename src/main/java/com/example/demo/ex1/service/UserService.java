@@ -1,7 +1,7 @@
 package com.example.demo.ex1.service;
 
 import com.example.demo.boarder.dto.RegisterDto;
-import com.example.demo.boarder.dto.UserDto;
+import com.example.demo.ex1.dto.UserDto;
 import com.example.demo.ex1.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

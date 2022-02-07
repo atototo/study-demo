@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,15 +8,22 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/cheatsheet.css" rel="stylesheet">
+
+    <!— jquery webjars add —>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <script>
-    function registerBoardInfo() {
-        const reqUserForm = document.frmBoard;
-        reqUserForm.setAttribute("method","post")
-        reqUserForm.setAttribute("action","/boarder/register/save")
-        reqUserForm.submit();
-    }
-
+    $(document).ready(function () {
+        $("#registerBoardInfo").on("click", function () {
+            // 아래는 비동기 처리
+            $.post("/boarder/register", $("form[name=frmBoard]").serialize() , function (data) {
+                alert(data);
+                if(data.search('성공') > 0){
+                    $(location).attr("href", "/boarder/list");
+                }
+            });
+        });
+    });
 </script>
 <body>
 <div>
@@ -31,14 +35,14 @@
             </div>
             <div class="col-md-4">
                 <label for="passwd" class="form-label">Password</label>
-                <input type="password" name="passwd" id="passwd" class="form-control" >
+                <input type="password" name="passwd" id="passwd" class="form-control">
             </div>
             <div class="col-md-4">
-                <label for="nick_name" class="form-label">Nickname</label>
-                <input type="text" name="nick_name" id="nick_name" class="form-control" aria-describedby="emailHelp">
+                <label for="nickName" class="form-label">Nickname</label>
+                <input type="text" name="nickName" id="nickName" class="form-control">
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="button" onclick="registerBoardInfo();">등록</button>
+                <button id="registerBoardInfo" class="btn btn-primary" type="button">등록</button>
             </div>
         </form>
     </div>

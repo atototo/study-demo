@@ -1,6 +1,6 @@
 package com.example.demo.ex1.controller;
 
-import com.example.demo.boarder.dto.UserDto;
+import com.example.demo.ex1.dto.UserDto;
 import com.example.demo.ex1.service.DemoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
