@@ -13,31 +13,8 @@
     <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <script>
-    function invalid(){
-        let check = true;
-
-        if($("#email").val() == ''){
-            $("#email").addClass('is-invalid');
-            check = false;
-        }
-
-        if($("#passwd").val() == ''){
-            $("#passwd").addClass('is-invalid');
-            check = false;
-        }
-
-        return check;
-    }
-
-    function changeClass(val){
-        if(val.value != '') {
-            val.classList.remove('is-invalid');
-            val.classList.add('is-valid');
-        }
-    }
-
-
     $(document).ready(function () {
+        //등록 이벤트 진행
         $("#registerBoardInfo").on("click", function () {
             if(invalid() == true){
                 $("#email").removeClass('is-invalid');
@@ -60,28 +37,28 @@
         <form class="row g-3" name="frmBoard">
             <div class="col-md-4">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" name="email" id="email" class="form-control" onkeyup="changeClass(this)" aria-describedby="emailHelp" required>
+                <input type="email" name="email" id="email" class="form-control" onkeyup="invalid()" aria-describedby="emailHelp" required>
                 <div class="valid-feedback">
                     입력 완료.
                 </div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback email-feedback">
                     이메일을 똑바로 입력 하세요.
                 </div>
             </div>
 
             <div class="col-md-4">
                 <label for="passwd" class="form-label">Password</label>
-                <input type="password" name="passwd" id="passwd" class="form-control" onkeyup="changeClass(this)" required>
+                <input type="password" name="passwd" id="passwd" class="form-control" onkeyup="invalid()" required>
                 <div class="valid-feedback">
                     입력 완료.
                 </div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback passwd-feedback">
                     패스워드를 똑바로 입력 하세요.
                 </div>
             </div>
             <div class="col-md-4">
                 <label for="nickName" class="form-label">Nickname</label>
-                <input type="text" name="nickName" id="nickName" class="form-control" onkeyup="changeClass(this)">
+                <input type="text" name="nickName" id="nickName" class="form-control" onkeyup="invalid()">
                 <div class="valid-feedback">
                     입력 완료.
                 </div>
@@ -95,5 +72,6 @@
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/js/cheatsheet.js"></script>
+<script src="/js/boarder-validation.js"></script>
 </body>
 </html>

@@ -18,13 +18,19 @@
 <script>
     $(document).ready(function () {
         $("#updateBoardInfo").on("click", function () {
-            // 아래는 비동기 처리
-            $.post("/boarder/update", $("#frmBoard").serialize() , function (data) {
-                alert(data);
-                if(data === '회원 수정 성공'){
-                    $(location).attr("href", "/boarder/list");
-                }
-            });
+            //유효성 검사
+            if(invalid() == true){
+                $("#email").removeClass('is-invalid');
+                $("#passwd").removeClass('is-invalid');
+
+                // 아래는 비동기 처리
+                $.post("/boarder/update", $("#frmBoard").serialize(), function (data) {
+                    alert(data);
+                    if (data === '회원 수정 성공') {
+                        $(location).attr("href", "/boarder/list");
+                    }
+                });
+            }
         });
     });
 </script>
@@ -35,15 +41,27 @@
             <input type="hidden" name="seq" th:value="${user.seq}">
             <div class="col-md-4">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" name="email" id="email" class="form-control" th:value="${user.email}" aria-describedby="emailHelp">
+                <input type="email" name="email" id="email" class="form-control" onkeyup="invalid()" th:value="${user.email}" aria-describedby="emailHelp">
+                <div class="valid-feedback">
+                    입력 완료.
+                </div>
+                <div class="invalid-feedback email-feedback">
+                    이메일을 똑바로 입력 하세요.
+                </div>
             </div>
             <div class="col-md-4">
                 <label for="passwd" class="form-label">Password</label>
-                <input type="password" name="passwd" id="passwd" th:value="${user.passwd}"  class="form-control" >
+                <input type="password" name="passwd" id="passwd" onkeyup="invalid()" th:value="${user.passwd}"  class="form-control" >
+                <div class="valid-feedback">
+                    입력 완료.
+                </div>
+                <div class="invalid-feedback passwd-feedback">
+                    패스워드를 똑바로 입력 하세요.
+                </div>
             </div>
             <div class="col-md-4">
                 <label for="nickName" class="form-label">Nickname</label>
-                <input type="text" name="nickName" id="nickName" th:value="${user.nickName}"  class="form-control">
+                <input type="text" name="nickName" id="nickName" onkeyup="invalid()" th:value="${user.nickName}"  class="form-control">
             </div>
             <div class="col-12">
                 <button id="updateBoardInfo" class="btn btn-primary" type="button">수정</button>
@@ -54,5 +72,6 @@
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/js/cheatsheet.js"></script>
+<script src="/js/boarder-validation.js"></script>
 </body>
 </html>

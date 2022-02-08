@@ -25,6 +25,9 @@ spring:
     suffix: .html
 mybatis:
   type-aliases-package: com.example.demo.dto
+#  mybatis sneak case camel case mapping 자동화
+  configuration:
+    map-underscore-to-camel-case: true
 
 
 logging:

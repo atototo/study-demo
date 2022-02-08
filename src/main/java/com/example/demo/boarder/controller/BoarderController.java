@@ -30,6 +30,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class BoarderController {
     private final BoarderService boarderService;
 
+    /**
+     * boarder list page 호출 메소드
+     * @param mv mv
+     * @return mv
+     */
     @GetMapping(value = "/list")
     public ModelAndView boarderListPage(ModelAndView mv){
         log.info("[ boarderController > boarderListPage 게시판 페이지 이동 요청]");
@@ -39,6 +44,11 @@ public class BoarderController {
     }
 
 
+    /**
+     * boarder register page 호출 메소드
+     * @param mv mv
+     * @return mv
+     */
     @GetMapping(value = "/register")
     public ModelAndView boarderRegisterPage(ModelAndView mv){
         log.info("[ boarderController > boarderRegisterPage 게시판 등록 페이지 이동 요청]");
@@ -46,6 +56,12 @@ public class BoarderController {
         return mv;
     }
 
+    /**
+     * boarder update page 호출 메소드
+     * @param mv mv
+     * @param seq req seq
+     * @return mv
+     */
     @GetMapping(value = "/update")
     public ModelAndView boarderUpdatePage(ModelAndView mv, Long seq){
         log.info("[ boarderController > boarderUpdatePage 게시판 수정 페이지 이동 요청], parameter [seq:{}]", seq);

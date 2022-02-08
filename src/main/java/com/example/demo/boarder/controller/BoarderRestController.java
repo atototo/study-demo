@@ -28,42 +28,37 @@ public class BoarderRestController {
     private final BoarderService boarderService;
 
     /**
-     * 회원정보 등록  ( DTO 로 요청 받는 경우 )
-     * 현재는 postman 과같은 툴을 이용해서만 테스트 가능
+     * 회원정보 등록
      * @param registerDto registerDto
-     * @param mv mv
-     * @return ModelAndView
+     * @return String
      */
     @PostMapping(value = "/register")
     @ResponseBody
-    public String boarderRegister(ModelAndView mv, RegisterDto registerDto) {
+    public String boarderRegister(RegisterDto registerDto) {
         log.info("[ UserController > registerUser 사용자 등록 요청 시작]");
         return boarderService.boarderRegister(registerDto);
     }
 
     /**
-     * 회원정보 수정  ( DTO 로 요청 받는 경우 )
-     * 현재는 postman 과같은 툴을 이용해서만 테스트 가능
+     * 회원정보 수정
      * @param registerDto registerDto
-     * @param mv mv
-     * @return ModelAndView
+     * @return String
      */
     @PostMapping(value = "/update")
     @ResponseBody
-    public String boarderUpdate(ModelAndView mv, RegisterDto registerDto) {
+    public String boarderUpdate(RegisterDto registerDto) {
         log.info("[ UserController > registerUser 사용자 수정 요청 시작]");
         return boarderService.boarderUpdate(registerDto);
     }
 
     /**
      * 사용자 삭제 요청
-     * @param mv mv
      * @param seq seq
-     * @return ModelAndView
+     * @return String
      */
     @PostMapping(value = "/delete")
     @ResponseBody
-    public String deleteBoarder(ModelAndView mv, Long seq) {
+    public String deleteBoarder(Long seq) {
         log.info("[ UserController > deleteUser 사용자 삭제 요청 시작]");
         return boarderService.deleteBoarder(seq);
     }
