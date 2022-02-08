@@ -29,9 +29,10 @@
         return check;
     }
 
-    function removeClass(val){
+    function changeClass(val){
         if(val.value != '') {
             val.classList.remove('is-invalid');
+            val.classList.add('is-valid');
         }
     }
 
@@ -59,7 +60,10 @@
         <form class="row g-3" name="frmBoard">
             <div class="col-md-4">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" name="email" id="email" class="form-control" onkeyup="removeClass(this)" aria-describedby="emailHelp" required>
+                <input type="email" name="email" id="email" class="form-control" onkeyup="changeClass(this)" aria-describedby="emailHelp" required>
+                <div class="valid-feedback">
+                    입력 완료.
+                </div>
                 <div class="invalid-feedback">
                     이메일을 똑바로 입력 하세요.
                 </div>
@@ -67,14 +71,20 @@
 
             <div class="col-md-4">
                 <label for="passwd" class="form-label">Password</label>
-                <input type="password" name="passwd" id="passwd" class="form-control" onkeyup="removeClass(this)" required>
+                <input type="password" name="passwd" id="passwd" class="form-control" onkeyup="changeClass(this)" required>
+                <div class="valid-feedback">
+                    입력 완료.
+                </div>
                 <div class="invalid-feedback">
                     패스워드를 똑바로 입력 하세요.
                 </div>
             </div>
             <div class="col-md-4">
                 <label for="nickName" class="form-label">Nickname</label>
-                <input type="text" name="nickName" id="nickName" class="form-control">
+                <input type="text" name="nickName" id="nickName" class="form-control" onkeyup="changeClass(this)">
+                <div class="valid-feedback">
+                    입력 완료.
+                </div>
             </div>
             <div class="col-12">
                 <button id="registerBoardInfo" class="btn btn-primary" type="button">등록</button>
