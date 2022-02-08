@@ -53,45 +53,4 @@ public class BoarderController {
         mv.setViewName("/boarder/updateForm");
         return mv;
     }
-
-    /**
-     * 회원정보 등록  ( DTO 로 요청 받는 경우 )
-     * 현재는 postman 과같은 툴을 이용해서만 테스트 가능
-     * @param registerDto registerDto
-     * @param mv mv
-     * @return ModelAndView
-     */
-    @PostMapping(value = "/register")
-    @ResponseBody
-    public String boarderRegister(ModelAndView mv, RegisterDto registerDto) {
-        log.info("[ UserController > registerUser 사용자 등록 요청 시작]");
-        return boarderService.boarderRegister(registerDto);
-    }
-
-    /**
-     * 회원정보 수정  ( DTO 로 요청 받는 경우 )
-     * 현재는 postman 과같은 툴을 이용해서만 테스트 가능
-     * @param registerDto registerDto
-     * @param mv mv
-     * @return ModelAndView
-     */
-    @PostMapping(value = "/update")
-    @ResponseBody
-    public String boarderUpdate(ModelAndView mv, RegisterDto registerDto) {
-        log.info("[ UserController > registerUser 사용자 수정 요청 시작]");
-        return boarderService.boarderUpdate(registerDto);
-    }
-
-    /**
-     * 사용자 삭제 요청
-     * @param mv mv
-     * @param seq seq
-     * @return ModelAndView
-     */
-    @PostMapping(value = "/delete")
-    @ResponseBody
-    public String deleteBoarder(ModelAndView mv, Long seq) {
-        log.info("[ UserController > deleteUser 사용자 삭제 요청 시작]");
-        return boarderService.deleteBoarder(seq);
-    }
 }
