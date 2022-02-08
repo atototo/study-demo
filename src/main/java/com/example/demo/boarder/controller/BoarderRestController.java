@@ -33,7 +33,6 @@ public class BoarderRestController {
      * @return String
      */
     @PostMapping(value = "/register")
-    @ResponseBody
     public String boarderRegister(RegisterDto registerDto) {
         log.info("[ UserController > registerUser 사용자 등록 요청 시작]");
         return boarderService.boarderRegister(registerDto);
@@ -45,7 +44,6 @@ public class BoarderRestController {
      * @return String
      */
     @PostMapping(value = "/update")
-    @ResponseBody
     public String boarderUpdate(RegisterDto registerDto) {
         log.info("[ UserController > registerUser 사용자 수정 요청 시작]");
         return boarderService.boarderUpdate(registerDto);
@@ -57,7 +55,6 @@ public class BoarderRestController {
      * @return String
      */
     @PostMapping(value = "/delete")
-    @ResponseBody
     public String deleteBoarder(Long seq) {
         log.info("[ UserController > deleteUser 사용자 삭제 요청 시작]");
         return boarderService.deleteBoarder(seq);

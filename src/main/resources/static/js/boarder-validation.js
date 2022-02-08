@@ -33,7 +33,7 @@ function invalid(){
         console.log(3);
         $("#passwd").addClass('is-invalid');
         $("#passwd").removeClass('is-valid');
-        $(".passwd-feedback").text("잘못된 비밀번호 형식입니다.");
+        $(".passwd-feedback").text("잘못된 비밀번호 형식입니다. (문자 + 숫자 포함 9-16자리)");
 
         passwdValid = false;
     }
