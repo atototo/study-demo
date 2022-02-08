@@ -36,9 +36,14 @@ public class BoarderService {
         String registerResult = "회원 등록 실패";
 
         // 성공일 경우 결과 문구 변경
-        if (boarderMapper.boarderRegister(registerDto) > 0) {
-            registerResult = "회원 등록 성공";
+        try {
+            if (boarderMapper.boarderRegister(registerDto) > 0) {
+                registerResult = "회원 등록 성공";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
 
         log.info("[ UserService > registerUser Result: {}]", registerResult);
         return registerResult;
@@ -54,8 +59,12 @@ public class BoarderService {
         String updateResult = "회원 수정 실패";
 
         // 성공일 경우 결과 문구 변경
-        if (boarderMapper.boarderUpdate(registerDto) > 0) {
-            updateResult = "회원 수정 성공";
+        try {
+            if (boarderMapper.boarderUpdate(registerDto) > 0) {
+                updateResult = "회원 수정 성공";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
         log.info("[ UserService > registerUser Result: {}]", updateResult);

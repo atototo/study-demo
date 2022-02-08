@@ -13,15 +13,43 @@
     <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <script>
+    function invalid(){
+        let check = true;
+
+        if($("#email").val() == ''){
+            $("#email").addClass('is-invalid');
+            check = false;
+        }
+
+        if($("#passwd").val() == ''){
+            $("#passwd").addClass('is-invalid');
+            check = false;
+        }
+
+        return check;
+    }
+
+    function removeClass(val){
+        if(val.value != '') {
+            val.classList.remove('is-invalid');
+        }
+    }
+
+
     $(document).ready(function () {
         $("#registerBoardInfo").on("click", function () {
-            // 아래는 비동기 처리
-            $.post("/boarder/register", $("form[name=frmBoard]").serialize() , function (data) {
-                alert(data);
-                if(data.search('성공') > 0){
-                    $(location).attr("href", "/boarder/list");
-                }
-            });
+            if(invalid() == true){
+                $("#email").removeClass('is-invalid');
+                $("#passwd").removeClass('is-invalid');
+
+                // 아래는 비동기 처리
+                $.post("/boarder/register", $("form[name=frmBoard]").serialize() , function (data) {
+                    alert(data);
+                    if(data.search('성공') > 0){
+                        $(location).attr("href", "/boarder/list");
+                    }
+                });
+            }
         });
     });
 </script>
@@ -31,11 +59,18 @@
         <form class="row g-3" name="frmBoard">
             <div class="col-md-4">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp">
+                <input type="email" name="email" id="email" class="form-control" onkeyup="removeClass(this)" aria-describedby="emailHelp" required>
+                <div class="invalid-feedback">
+                    이메일을 똑바로 입력 하세요.
+                </div>
             </div>
+
             <div class="col-md-4">
                 <label for="passwd" class="form-label">Password</label>
-                <input type="password" name="passwd" id="passwd" class="form-control">
+                <input type="password" name="passwd" id="passwd" class="form-control" onkeyup="removeClass(this)" required>
+                <div class="invalid-feedback">
+                    패스워드를 똑바로 입력 하세요.
+                </div>
             </div>
             <div class="col-md-4">
                 <label for="nickName" class="form-label">Nickname</label>
